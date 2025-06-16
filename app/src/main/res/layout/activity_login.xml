@@ -1,0 +1,333 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1d2025"
+    android:padding="24dp">
+
+    <!-- Fondo -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_overlay"
+        android:alpha="0.1" />
+
+    <!-- Partículas de fodo   -->
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/ic_particle_dot"
+        android:alpha="0.4"
+        android:rotation="45" />
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="180dp"
+        android:layout_marginStart="60dp"
+        android:src="@drawable/ic_particle_star"
+        android:alpha="0.3"
+        android:rotation="15" />
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginStart="80dp"
+        android:src="@drawable/ic_particle_triangle"
+        android:alpha="0.35"
+        android:rotation="30" />
+
+    <!-- Container principal -->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:alpha="0"
+        android:translationY="80dp">
+
+        <!-- Container de imagen  -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+
+            <!-- Efecto  detrás de la img  -->
+            <View
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:background="@drawable/glow_circle"
+                android:alpha="0.15" />
+
+            <!-- Imagen principal -->
+            <FrameLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border_glow">
+
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/ic_game_placeholder"
+                    android:contentDescription="Logo de la aplicación"
+                    android:scaleType="centerCrop" />
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/pulse_indicator"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_gravity="center"
+                android:background="@drawable/pulse_ring"
+                android:alpha="0" />
+
+        </FrameLayout>
+
+        <!-- Container de texto  -->
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="48dp"
+            android:alpha="0"
+            android:translationY="60dp">
+
+            <!-- Texto principal -->
+            <TextView
+                android:id="@+id/tv_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conéctate y organiza tus juegos"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:shadowColor="#4CAF50"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="8"
+                android:alpha="0.9" />
+
+            <!-- Línea decoraicon -->
+            <View
+                android:layout_width="80dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/accent_line_gradient"
+                android:alpha="0.8" />
+
+            <!-- Texto debajo -->
+            <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visualiza tus juegos favoritos en una sola app"
+                android:textSize="16sp"
+                android:textColor="#B0B3B8"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="2dp" />
+
+        </LinearLayout>
+
+        <!-- Container de botones  -->
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:alpha="0"
+            android:translationY="40dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8">
+
+            <!-- Botón Ingresar  -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <!-- Sombra del botón -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/button_shadow"
+                    android:alpha="0.3" />
+
+                <!-- Botón principal -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Ingresar"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#4CAF50"
+                    android:fontFamily="sans-serif-medium"
+                    android:elevation="8dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_login"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconTint="#FFFFFF"
+                    app:rippleColor="#66BB6A"
+                    app:strokeColor="#5CBF60"
+                    app:strokeWidth="1dp"
+                    style="@style/Widget.Material3.Button" />
+
+                <!-- Efecto -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/button_shine_effect"
+                    android:alpha="0.1"
+                    android:clickable="false" />
+
+            </FrameLayout>
+
+            <!-- Botón Registrarse -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Botón de registro -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Registrarse"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"
+                    android:textAllCaps="false"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
+                    android:elevation="2dp"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#2196F3"
+                    app:strokeWidth="2dp"
+                    app:icon="@drawable/ic_register"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconTint="#2196F3"
+                    app:rippleColor="#1976D2"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                <!-- Efecto -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/button_hover_effect"
+                    android:alpha="0"
+                    android:clickable="false" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/corner_decoration"
+            android:alpha="0.3" />
+
+        <View
+            android:id="@+id/rotating_decoration"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:background="@drawable/corner_ring_decoration"
+            android:alpha="0.2" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/corner_decoration_small"
+            android:alpha="0.2" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/floating_dots"
+            android:alpha="0.15" />
+
+    </FrameLayout>
+
+
+    <View
+        android:id="@+id/floating_particle_1"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="100dp"
+        android:background="@drawable/particle_glow"
+        android:alpha="0.6" />
+
+    <View
+        android:id="@+id/floating_particle_2"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/particle_glow"
+        android:alpha="0.4" />
+
+    <View
+        android:id="@+id/floating_particle_3"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="150dp"
+        android:layout_marginStart="80dp"
+        android:background="@drawable/particle_glow"
+        android:alpha="0.5" />
+
+</RelativeLayout>

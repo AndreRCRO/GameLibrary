@@ -86,37 +86,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_resultados"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Resultados"
-                    android:textColor="#B0B3B8"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"
-                    android:visibility="gone" />
-
                 <!-- RecyclerView para mostrar los resultados de búsqueda -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_resultados_busqueda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_biblioteca"
-                    android:visibility="gone" />
-
-                <!-- Mensaje cuando no hay resultados -->
-                <TextView
-                    android:id="@+id/tv_no_resultados"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="No se encontraron juegos"
-                    android:textColor="#B0B3B8"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginTop="32dp"
-                    android:visibility="gone" />
+                    tools:listitem="@layout/item_biblioteca" />
 
                 <!-- Mensaje inicial -->
                 <TextView

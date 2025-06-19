@@ -59,8 +59,8 @@
 
         <!-- Container de imagen  -->
         <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_marginBottom="32dp">
 
             <!-- Efecto  detrás de la img  -->
@@ -76,18 +76,17 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
+                android:padding="32dp"
                 android:background="@drawable/image_border_glow">
 
-                <ImageView
-                    android:id="@+id/iv_logo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/ic_game_placeholder"
-                    android:contentDescription="Logo de la aplicación"
-                    android:scaleType="centerCrop" />
-
-            </FrameLayout>
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_game_placeholder"
+                android:contentDescription="Logo de la aplicación"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
 
             <View
                 android:id="@+id/pulse_indicator"
@@ -108,7 +107,9 @@
             android:gravity="center"
             android:layout_marginBottom="48dp"
             android:alpha="0"
-            android:translationY="60dp">
+            android:translationY="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
             <!-- Texto principal -->
             <TextView
@@ -189,6 +190,8 @@
                     android:backgroundTint="#4CAF50"
                     android:fontFamily="sans-serif-medium"
                     android:elevation="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cornerRadius="12dp"
                     app:icon="@drawable/ic_login"
                     app:iconGravity="textStart"
@@ -227,6 +230,8 @@
                     android:backgroundTint="@android:color/transparent"
                     android:fontFamily="sans-serif-medium"
                     android:elevation="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cornerRadius="12dp"
                     app:strokeColor="#2196F3"
                     app:strokeWidth="2dp"

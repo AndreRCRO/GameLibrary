@@ -53,24 +53,24 @@
                 android:layout_marginBottom="48dp">
 
                 <FrameLayout
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginBottom="24dp">
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginBottom="20dp">
 
                     <View
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
                         android:background="@drawable/glow_circle"
-                        android:alpha="0.1" />
+                        android:alpha="0.15" />
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/ic_game_placeholder"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_game_placeholder"
                         android:contentDescription="Logo"
                         android:scaleType="centerCrop" />
-
                 </FrameLayout>
 
                 <TextView
@@ -106,14 +106,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="32dp">
+                android:layout_marginBottom="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:hint="Email o Usuario"
+                    android:hint="Nombre de Usuario"
                     app:hintTextColor="#B0B3B8"
                     app:boxBackgroundColor="#2A2D32"
                     app:boxBackgroundMode="filled"
@@ -129,7 +131,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_email"
+                        android:id="@+id/et_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"
@@ -199,7 +201,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"

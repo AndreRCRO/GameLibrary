@@ -9,16 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#1d2025"
-        android:padding="32dp">
+        android:padding="7dp">
 
-        <!-- Fondo con gradiente sutil -->
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_gradient_overlay"
             android:alpha="0.1" />
 
-        <!-- Partículas decorativas -->
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -39,7 +37,6 @@
             android:src="@drawable/ic_particle_star"
             android:alpha="0.25" />
 
-        <!-- Container principal del formulario -->
         <LinearLayout
             android:id="@+id/login_container"
             android:layout_width="match_parent"
@@ -48,7 +45,6 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <!-- Header del login -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,13 +52,11 @@
                 android:gravity="center"
                 android:layout_marginBottom="48dp">
 
-                <!-- Logo pequeño -->
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginBottom="24dp">
 
-                    <!-- Efecto glow reducido -->
                     <View
                         android:layout_width="90dp"
                         android:layout_height="90dp"
@@ -79,7 +73,6 @@
 
                 </FrameLayout>
 
-                <!-- Título -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +84,6 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="sans-serif-medium" />
 
-                <!-- Línea decorativa -->
                 <View
                     android:layout_width="60dp"
                     android:layout_height="2dp"
@@ -99,7 +91,6 @@
                     android:background="@drawable/accent_line_gradient"
                     android:alpha="0.8" />
 
-                <!-- Subtítulo -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,14 +102,12 @@
 
             </LinearLayout>
 
-            <!-- Formulario principal -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="32dp">
 
-                <!-- Campo Email/Usuario -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_email"
                     android:layout_width="match_parent"
@@ -151,7 +140,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Campo Contraseña -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_password"
                     android:layout_width="match_parent"
@@ -184,7 +172,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Opciones adicionales -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,7 +179,6 @@
                     android:layout_marginBottom="24dp"
                     android:gravity="center_vertical">
 
-                    <!-- Checkbox Recordar -->
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/cb_remember"
                         android:layout_width="wrap_content"
@@ -209,20 +195,17 @@
 
             </LinearLayout>
 
-            <!-- Botones de acción -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="24dp">
 
-                <!-- Botón Iniciar Sesión -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp">
 
-                    <!-- Sombra del botón -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -252,7 +235,6 @@
 
                 </FrameLayout>
 
-                <!-- Separador -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -284,7 +266,6 @@
 
                 </LinearLayout>
 
-                <!-- Botón Crear Cuenta -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_create_account"
                     android:layout_width="match_parent"

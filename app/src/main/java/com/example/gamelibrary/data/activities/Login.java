@@ -1,18 +1,13 @@
-package com.example.gamelibrary.activities;
+package com.example.gamelibrary.data.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gamelibrary.R;
 
@@ -23,12 +18,15 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Delay before starting animations
         new Handler(Looper.getMainLooper()).postDelayed(this::startAnimations, 300); // 300ms delay
 
-        // Set up login button to navigate to MainActivity
         findViewById(R.id.btn_login).setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, LoginForm.class);
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_register).setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, RegisterForm.class);
             startActivity(intent);
             finish();
         });

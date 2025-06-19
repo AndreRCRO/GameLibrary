@@ -15,7 +15,7 @@
 
         <!-- Splash como actividad inicial -->
         <activity
-            android:name=".activities.Splash"
+            android:name=".data.activities.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,35 +24,24 @@
         </activity>
 
         <activity
-            android:name=".activities.Login"
+            android:name=".data.activities.Login"
             android:exported="false" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
 
         <activity
-            android:name=".activities.GameDetail"
+            android:name=".data.activities.GameDetail"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".data.activities.LoginForm"
             android:exported="false" />
 
         <activity
-            android:name=".activities.Favorites"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.Collections"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.Profile"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.LoginForm"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.RegisterForm"
+            android:name=".data.activities.RegisterForm"
             android:exported="false" />
     </application>
 

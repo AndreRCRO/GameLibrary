@@ -1,4 +1,4 @@
-package com.example.gamelibrary.activities;
+package com.example.gamelibrary.data.activities;
 
 import android.os.Bundle;
 
@@ -10,16 +10,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gamelibrary.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GameDetail extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
-        // Apply window insets to the root layout or fragment container
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragment_container), (v, insets) -> {
+        setContentView(R.layout.activity_game_detail);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;

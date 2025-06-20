@@ -1,10 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.activities.GameDetail">
+    android:background="#1d2025">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <!-- Imagen del juego -->
+                <ImageView
+                    android:id="@+id/iv_game_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="#2A2D33"
+                    tools:src="@drawable/game_placeholder" />
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/back_button_background"
+                    android:src="@drawable/ic_arrow_back"
+                    android:contentDescription="Regresar"
+                    android:scaleType="centerInside"
+                    android:tint="#FFFFFF"
+                    android:elevation="4dp" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Información básica del juego (año, plataformas, calificación) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_game_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2023"
+                        android:textColor="#B0B3B8"
+                        android:textSize="16sp"
+                        android:background="@drawable/info_chip_background"
+                        android:padding="8dp"
+                        android:layout_marginEnd="12dp"
+                        tools:text="2023" />
+
+                    <TextView
+                        android:id="@+id/tv_game_platforms"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PC, PS5, Xbox"
+                        android:textColor="#B0B3B8"
+                        android:textSize="16sp"
+                        android:background="@drawable/info_chip_background"
+                        android:padding="8dp"
+                        android:layout_marginEnd="12dp"
+                        tools:text="PC, PS5, Xbox" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/rating_chip_background"
+                        android:padding="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_metacritic_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85"
+                            android:textColor="#FFD700"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            tools:text="85" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="#FFD700" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_about_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOBRE ESTE JUEGO:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_game_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Descripción del juego aquí."
+                        android:textColor="#B0B3B8"
+                        android:textSize="16sp"
+                        android:lineSpacingExtra="4dp"
+                        tools:text="Descripción del juego aquí." />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

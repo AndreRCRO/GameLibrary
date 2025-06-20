@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1d2025">
@@ -11,10 +11,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                     android:id="@+id/iv_game_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
                     android:background="#2A2D33"
+                    android:scaleType="centerCrop"
                     tools:src="@drawable/game_placeholder" />
 
                 <ImageButton
@@ -40,11 +40,11 @@
                     android:layout_height="40dp"
                     android:layout_margin="16dp"
                     android:background="@drawable/back_button_background"
-                    android:src="@drawable/ic_arrow_back"
                     android:contentDescription="Regresar"
+                    android:elevation="4dp"
                     android:scaleType="centerInside"
-                    android:tint="#FFFFFF"
-                    android:elevation="4dp" />
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="#FFFFFF" />
 
             </FrameLayout>
 
@@ -58,52 +58,52 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="24dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_game_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/info_chip_background"
+                        android:padding="8dp"
                         android:text="2023"
                         android:textColor="#B0B3B8"
                         android:textSize="16sp"
-                        android:background="@drawable/info_chip_background"
-                        android:padding="8dp"
-                        android:layout_marginEnd="12dp"
                         tools:text="2023" />
 
                     <TextView
                         android:id="@+id/tv_game_platforms"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
                         android:layout_weight="1"
+                        android:background="@drawable/info_chip_background"
+                        android:padding="8dp"
                         android:text="PC, PS5, Xbox"
                         android:textColor="#B0B3B8"
                         android:textSize="16sp"
-                        android:background="@drawable/info_chip_background"
-                        android:padding="8dp"
-                        android:layout_marginEnd="12dp"
                         tools:text="PC, PS5, Xbox" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:background="@drawable/rating_chip_background"
-                        android:padding="8dp"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <TextView
                             android:id="@+id/tv_metacritic_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:text="85"
                             android:textColor="#FFD700"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_marginEnd="4dp"
                             tools:text="85" />
 
                         <ImageView
@@ -125,20 +125,20 @@
                         android:id="@+id/tv_about_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="SOBRE ESTE JUEGO:"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="12dp" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_game_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"
                         android:text="Descripción del juego aquí."
                         android:textColor="#B0B3B8"
                         android:textSize="16sp"
-                        android:lineSpacingExtra="4dp"
                         tools:text="Descripción del juego aquí." />
 
                 </LinearLayout>

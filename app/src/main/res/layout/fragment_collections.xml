@@ -33,11 +33,11 @@
                     android:id="@+id/tv_colecciones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Colecciones"
+                    android:layout_marginBottom="24dp"
+                    android:text="COLECCIONES"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="24dp" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

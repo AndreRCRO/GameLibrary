@@ -33,11 +33,11 @@
                     android:id="@+id/tv_juegos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Juegos"
+                    android:layout_marginBottom="24dp"
+                    android:text="MIS JUEGOS"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="24dp" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

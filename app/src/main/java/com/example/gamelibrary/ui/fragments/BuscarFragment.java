@@ -1,5 +1,6 @@
 package com.example.gamelibrary.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gamelibrary.R;
+import com.example.gamelibrary.data.activities.GameDetail;
 import com.example.gamelibrary.data.adapters.JuegoAdapter;
 import com.example.gamelibrary.data.modelos.Juego;
 
@@ -37,6 +39,7 @@ public class BuscarFragment extends Fragment {
 
     private final String JUEGOS_URL = "http://10.0.2.2:5001/api/juegos"; // o tu IP local real
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buscar, container, false);
@@ -47,6 +50,12 @@ public class BuscarFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapter = new JuegoAdapter(getContext(), juegos);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemActionListener((juego, position) -> {
+            Intent intent = new Intent(getContext(), GameDetail.class);
+            intent.putExtra("juego", juego);
+            startActivity(intent);
+        });
 
         // Filtrado en tiempo real
         et_buscar.addTextChangedListener(new android.text.TextWatcher() {

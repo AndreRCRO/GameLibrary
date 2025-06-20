@@ -26,9 +26,10 @@ import org.json.JSONObject;
 public class LoginForm extends AppCompatActivity {
 
     EditText edtUsername, edtPassword;
-    Button btnLogin;
+    Button btnLogin, btn_create_account;
     RequestQueue requestQueue;
-    final String LOGIN_URL = "http://10.0.2.2:5001/api/usuarios/login"; // Para emulador
+    final String LOGIN_URL = "http://10.0.2.2:5001/api/usuarios/login";
+    //sharpreference
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,16 @@ public class LoginForm extends AppCompatActivity {
         edtUsername = findViewById(R.id.et_username);
         edtPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
+        btn_create_account = findViewById(R.id.btn_create_account);
 
         requestQueue = Volley.newRequestQueue(this);
 
         btnLogin.setOnClickListener(view -> loginUser());
+        btn_create_account.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginForm.this, RegisterForm.class);
+            startActivity(intent);
+            finish();
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login_container), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -83,7 +90,6 @@ public class LoginForm extends AppCompatActivity {
 
                             // Setear datos del usuario
                             user.setUsername(data.getString("username"));
-                            user.setNombre(data.optString("nombre", ""));
                             user.setId(data.optInt("id", 0));
 
                             // Convertir JSONObject a JsonObject de Gson

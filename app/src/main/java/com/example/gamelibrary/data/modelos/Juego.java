@@ -1,8 +1,9 @@
 package com.example.gamelibrary.data.modelos;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Juego {
+public class Juego implements Serializable {
     private int id;
     private String titulo;
     private String descripcion;
@@ -17,6 +18,13 @@ public class Juego {
     public int getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getImagenUrl() { return imagen_url; }
+    public String getDescripcion() { return descripcion; }
+    public int getAnio_lanzamiento() { return anio_lanzamiento; }
+    public String getDesarrolladora() { return desarrolladora; }
+    public int getMetacritic() { return metacritic; }
+    public List<String> getGeneros() { return generos; }
+    public List<String> getPlataformas() { return plataformas; }
+
     // Puedes añadir más según necesites
 
     public void setId(int id) { this.id = id; }

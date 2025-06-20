@@ -43,10 +43,11 @@
             android:id="@+id/tv_biblioteca_contador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="24 elementos"
             android:textColor="#A0AEC0"
             android:textSize="10sp"
-            android:gravity="center" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 

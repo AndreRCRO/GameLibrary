@@ -6,7 +6,6 @@ public class usuario {
     private static usuario instancia;
 
     private int id;
-    private String nombre;
     private String username;
     private JsonObject data; // com.google.gson.JsonObject
     private String ultima_actualizacion;
@@ -30,14 +29,6 @@ public class usuario {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getUsername() {
@@ -67,7 +58,6 @@ public class usuario {
     // Método para limpiar la instancia (por ejemplo al cerrar sesión)
     public void clear() {
         id = 0;
-        nombre = null;
         username = null;
         data = null;
         ultima_actualizacion = null;

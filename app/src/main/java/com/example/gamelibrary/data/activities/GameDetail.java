@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,18 +20,13 @@ import com.example.gamelibrary.data.modelos.Juego;
 public class GameDetail extends AppCompatActivity {
     private ImageView iv_game_image;
     private TextView tv_game_year, tv_game_platforms, tv_metacritic_score, tv_game_description;
-    private ImageButton btn_back;
+    private ImageButton btn_back, btn_favorite;
+    private boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game_detail);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         iv_game_image = findViewById(R.id.iv_game_image);
         tv_game_year = findViewById(R.id.tv_game_year);
@@ -38,6 +34,7 @@ public class GameDetail extends AppCompatActivity {
         tv_metacritic_score = findViewById(R.id.tv_metacritic_score);
         tv_game_description = findViewById(R.id.tv_game_description);
         btn_back = findViewById(R.id.btn_back);
+        btn_favorite = findViewById(R.id.btn_favorite);
 
         Juego juego = (Juego) getIntent().getSerializableExtra("juego");
 
@@ -50,5 +47,34 @@ public class GameDetail extends AppCompatActivity {
         tv_game_description.setText(juego.getDescripcion());
 
         btn_back.setOnClickListener(view -> finish());
+
+        btn_favorite.setOnClickListener(v -> toggleFavorite());
+    }
+
+    //Metodo para poeder cambiar el estado del favorito (corazon)
+    private void toggleFavorite() {
+        isFavorite = !isFavorite;
+
+        if (isFavorite) {
+            // Corazon relleno
+            btn_favorite.setImageResource(R.drawable.ic_favorite);
+            btn_favorite.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_red_light));
+        } else {
+            // marco vacio del cora
+            btn_favorite.setImageResource(R.drawable.ic_favorite_border);
+            btn_favorite.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
+        }
+
+        //Animacion que podria dar problemas pero se peude cambiar xd
+        btn_favorite.animate()
+                .scaleX(1.2f)
+                .scaleY(1.2f)
+                .setDuration(100)
+                .withEndAction(() -> btn_favorite.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .setDuration(100)
+                        .start())
+                .start();
     }
 }

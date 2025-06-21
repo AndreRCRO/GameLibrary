@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Cuerpo principal de la carpeta -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4a5568" />
+            <corners
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:topLeftRadius="0dp"
+                android:topRightRadius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Pestaña superior de la carpeta -->
+    <item
+        android:left="0dp"
+        android:top="0dp"
+        android:right="100dp"
+        android:bottom="80dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFDE21" />
+            <corners
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Sombra interna para dar profundidad -->
+    <item android:top="15dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFDE21" />
+            <corners
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:topLeftRadius="0dp"
+                android:topRightRadius="8dp" />
+        </shape>
+    </item>
+
+</layer-list>

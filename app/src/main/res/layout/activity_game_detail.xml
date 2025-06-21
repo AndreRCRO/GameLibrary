@@ -46,6 +46,41 @@
                     android:src="@drawable/ic_arrow_back"
                     android:tint="#FFFFFF" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/btn_add"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/floating_icon_background"
+                        android:contentDescription="Agregar"
+                        android:elevation="6dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_add"
+                        android:tint="#FFFFFF"
+                        android:alpha="0.8" />
+
+                    <!-- Icono de corazón -->
+                    <ImageButton
+                        android:id="@+id/btn_favorite"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/floating_icon_background"
+                        android:contentDescription="Favorito"
+                        android:elevation="6dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_favorite_border"
+                        android:tint="#FFFFFF"
+                        android:alpha="0.8" />
+
+                </LinearLayout>
+
             </FrameLayout>
 
             <LinearLayout
@@ -58,7 +93,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -113,6 +148,46 @@
                             android:tint="#FFD700" />
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Géneros del juego -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="GÉNEROS:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/flexbox_genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flexWrap="wrap"
+                        app:justifyContent="flex_start">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/genre_chip_background"
+                            android:padding="8dp"
+                            android:text="Acción"
+                            android:textColor="#B0B3B8"
+                            android:textSize="14sp"
+                            tools:text="Acción" />
+
+
+                    </com.google.android.flexbox.FlexboxLayout>
 
                 </LinearLayout>
 

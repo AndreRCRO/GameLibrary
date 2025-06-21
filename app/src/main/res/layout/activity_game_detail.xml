@@ -172,22 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:flexWrap="wrap"
-                        app:justifyContent="flex_start">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/genre_chip_background"
-                            android:padding="8dp"
-                            android:text="Acción"
-                            android:textColor="#B0B3B8"
-                            android:textSize="14sp"
-                            tools:text="Acción" />
-
-
-                    </com.google.android.flexbox.FlexboxLayout>
+                        app:justifyContent="flex_start"/>
 
                 </LinearLayout>
 

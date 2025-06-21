@@ -1,6 +1,7 @@
 package com.example.gamelibrary.data.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,14 +20,17 @@ import com.android.volley.toolbox.Volley;
 import com.example.gamelibrary.R;
 import com.example.gamelibrary.data.modelos.usuario;
 import com.example.gamelibrary.ui.MainActivity;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginForm extends AppCompatActivity {
 
-    EditText edtUsername, edtPassword;
-    Button btnLogin, btn_create_account;
+    private EditText edtUsername, edtPassword;
+    private Button btnLogin, btn_create_account;
+    private MaterialCheckBox cb_remember;
+
     RequestQueue requestQueue;
     final String LOGIN_URL = "http://10.0.2.2:5001/api/usuarios/login";
     //sharpreference
@@ -41,6 +45,7 @@ public class LoginForm extends AppCompatActivity {
         edtPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         btn_create_account = findViewById(R.id.btn_create_account);
+        cb_remember = findViewById(R.id.cb_remember);
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -91,6 +96,21 @@ public class LoginForm extends AppCompatActivity {
                             // Setear datos del usuario
                             user.setUsername(data.getString("username"));
                             user.setId(data.optInt("id", 0));
+
+                            if(cb_remember.isChecked()) {
+                                SharedPreferences prefs = getSharedPreferences("mi_app_prefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+
+                                try {
+                                    editor.putBoolean("is_logged_in", true);
+                                    editor.putString("user_username", data.getString("username"));
+                                    editor.putInt("user_id", data.getInt("id"));
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                editor.apply();
+                            }
 
                             // Convertir JSONObject a JsonObject de Gson
                             com.google.gson.JsonParser parser = new com.google.gson.JsonParser();

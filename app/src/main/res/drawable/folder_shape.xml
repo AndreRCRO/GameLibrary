@@ -1,43 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Cuerpo principal de la carpeta -->
+    <!-- Contorno negro tipo pixel-art -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#4a5568" />
-            <corners
-                android:bottomLeftRadius="8dp"
-                android:bottomRightRadius="8dp"
-                android:topLeftRadius="0dp"
-                android:topRightRadius="8dp" />
+            <solid android:color="#000000" /> <!-- borde negro -->
         </shape>
     </item>
 
-    <!-- Pestaña superior de la carpeta -->
-    <item
-        android:left="0dp"
-        android:top="0dp"
-        android:right="100dp"
-        android:bottom="80dp">
+    <!-- Cuerpo principal de la carpeta (interior) -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">
         <shape android:shape="rectangle">
-            <solid android:color="#FFDE21" />
-            <corners
-                android:topLeftRadius="8dp"
-                android:topRightRadius="8dp"
-                android:bottomLeftRadius="0dp"
-                android:bottomRightRadius="0dp" />
+            <solid android:color="#2b2b2b" /> <!-- gris oscuro retro -->
         </shape>
     </item>
 
-    <!-- Sombra interna para dar profundidad -->
-    <item android:top="15dp">
+    <!-- Pestaña superior de la carpeta (color brillante tipo pixel retro) -->
+    <item android:left="2dp" android:top="2dp" android:right="70dp" android:bottom="80dp">
         <shape android:shape="rectangle">
-            <solid android:color="#FFDE21" />
-            <corners
-                android:bottomLeftRadius="8dp"
-                android:bottomRightRadius="8dp"
-                android:topLeftRadius="0dp"
-                android:topRightRadius="8dp" />
+            <solid android:color="#fcd000" /> <!-- amarillo tipo NES -->
+        </shape>
+    </item>
+
+    <!-- Detalle extra como capa superior (puede simular brillo o recorte) -->
+    <item android:left="2dp" android:top="20dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#f4b400" /> <!-- tono ligeramente más oscuro para contraste -->
         </shape>
     </item>
 

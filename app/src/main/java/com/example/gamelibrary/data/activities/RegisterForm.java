@@ -1,6 +1,7 @@
 package com.example.gamelibrary.data.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -97,6 +98,20 @@ public class RegisterForm extends AppCompatActivity {
 
                         user.setUsername(data.getString("username"));
                         user.setId(data.optInt("id", 0));
+
+                        SharedPreferences prefs = getSharedPreferences("mi_app_prefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+
+                        try {
+                            editor.putBoolean("is_logged_in", true);
+                            editor.putString("user_username", data.getString("username"));
+                            editor.putInt("user_id", data.getInt("id"));
+                            // Si tienes token, guardalo aquí también
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        editor.apply();
 
                         // Convertir JSONObject a JsonObject de Gson
                         com.google.gson.JsonParser parser = new com.google.gson.JsonParser();

@@ -1,9 +1,14 @@
 package com.example.gamelibrary.data.modelos;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Entity(tableName = "juego")
 public class Juego implements Serializable {
+    @PrimaryKey
     private int id;
     private String titulo;
     private String descripcion;
@@ -13,6 +18,7 @@ public class Juego implements Serializable {
     private int metacritic;
     private List<String> generos;
     private List<String> plataformas;
+    private boolean favorito = false;
 
     // Getters y Setters
     public int getId() { return id; }

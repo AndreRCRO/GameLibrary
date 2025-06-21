@@ -110,7 +110,7 @@ public class BuscarFragment extends Fragment {
                             juego.setPlataformas(plataformas);
 
                             juegos.add(juego);
-                            juegosOriginales.add(juego); // <- importante para filtrado
+                            juegosOriginales.add(juego);
                         }
 
                         adapter.notifyDataSetChanged();

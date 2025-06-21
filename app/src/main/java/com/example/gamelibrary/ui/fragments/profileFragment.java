@@ -1,6 +1,7 @@
 package com.example.gamelibrary.ui.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,12 @@ import androidx.fragment.app.Fragment;
 import com.example.gamelibrary.R;
 import com.example.gamelibrary.data.activities.Login;
 import com.example.gamelibrary.data.modelos.usuario;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 public class profileFragment extends Fragment {
 
-    TextView tv_username;
-    Button btn_desconectar;
+    private TextView tv_username;
+    private Button btn_desconectar;
     usuario user = usuario.getInstance();
 
     @Override
@@ -32,12 +34,17 @@ public class profileFragment extends Fragment {
         tv_username.setText(user.getUsername()); // Mostrar usuario
 
         btn_desconectar.setOnClickListener(v -> {
-            user.clear(); // Limpiar singleton
+            // Limpiar singleton
+            user.clear();
 
-            // Crear intent para MainActivity
+            // Borrar SharedPreferences
+            SharedPreferences prefs = requireContext().getSharedPreferences("mi_app_prefs", requireContext().MODE_PRIVATE);
+            prefs.edit().clear().apply();
+
+            // Crear intent para Login (no MainActivity)
             Intent intent = new Intent(requireContext(), Login.class);
 
-            // Limpiar la pila de actividades y comenzar de nuevo
+            // Limpiar pila de actividades para que no se pueda volver atrás
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             startActivity(intent);

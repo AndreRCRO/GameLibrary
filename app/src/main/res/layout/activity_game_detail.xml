@@ -66,7 +66,6 @@
                         android:tint="#FFFFFF"
                         android:alpha="0.8" />
 
-                    <!-- Icono de corazón -->
                     <ImageButton
                         android:id="@+id/btn_favorite"
                         android:layout_width="36dp"
@@ -89,7 +88,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Información básica del juego (año, plataformas, calificación) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,7 +149,6 @@
 
                 </LinearLayout>
 
-                <!-- Géneros del juego -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#1d2025">
 
-    <!-- ScrollView para hacer la pantalla deslizable -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -41,11 +40,15 @@
 
             </LinearLayout>
 
-            <!-- Sección Populares -->
-
-            <!-- Sección Novedades -->
-
-            <!-- Sección Recomendados -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_juegos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                tools:listitem="@layout/item_carpeta_biblioteca"
+                tools:itemCount="5" />
 
         </LinearLayout>
 

@@ -26,20 +26,49 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
 
                 <TextView
                     android:id="@+id/tv_colecciones"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_weight="1"
                     android:text="COLECCIONES"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
                     android:textStyle="bold" />
 
+
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_add_collection"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_add"
+                android:background="@drawable/bg_circle_button"
+                android:padding="8dp"
+                android:tint="#FFFFFF"
+                android:contentDescription="Agregar colección"
+                android:layout_marginBottom="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#33FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_colecciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                tools:listitem="@layout/item_collections"
+                tools:itemCount="4" />
 
         </LinearLayout>
 

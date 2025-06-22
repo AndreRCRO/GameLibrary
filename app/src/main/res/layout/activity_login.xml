@@ -5,14 +5,12 @@
     android:background="#1d2025"
     android:padding="7dp">
 
-    <!-- Fondo -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_gradient_overlay"
         android:alpha="0.1" />
 
-    <!-- Partículas de fodo   -->
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -46,7 +44,6 @@
         android:alpha="0.35"
         android:rotation="30" />
 
-    <!-- Container principal -->
     <LinearLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
@@ -57,13 +54,11 @@
         android:alpha="0"
         android:translationY="80dp">
 
-        <!-- Container de imagen  -->
         <FrameLayout
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginBottom="32dp">
 
-            <!-- Efecto  detrás de la img  -->
             <View
                 android:layout_width="220dp"
                 android:layout_height="220dp"
@@ -71,7 +66,6 @@
                 android:background="@drawable/glow_circle"
                 android:alpha="0.15" />
 
-            <!-- Imagen principal -->
             <FrameLayout
                 android:layout_width="200dp"
                 android:layout_height="200dp"
@@ -98,7 +92,6 @@
 
         </FrameLayout>
 
-        <!-- Container de texto  -->
         <LinearLayout
             android:id="@+id/text_container"
             android:layout_width="wrap_content"
@@ -111,7 +104,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
-            <!-- Texto principal -->
             <TextView
                 android:id="@+id/tv_main_title"
                 android:layout_width="wrap_content"
@@ -129,7 +121,6 @@
                 android:shadowRadius="8"
                 android:alpha="0.9" />
 
-            <!-- Línea decoraicon -->
             <View
                 android:layout_width="80dp"
                 android:layout_height="2dp"
@@ -137,7 +128,6 @@
                 android:background="@drawable/accent_line_gradient"
                 android:alpha="0.8" />
 
-            <!-- Texto debajo -->
             <TextView
                 android:id="@+id/tv_subtitle"
                 android:layout_width="wrap_content"
@@ -151,7 +141,6 @@
 
         </LinearLayout>
 
-        <!-- Container de botones  -->
         <LinearLayout
             android:id="@+id/buttons_container"
             android:layout_width="match_parent"
@@ -163,13 +152,11 @@
             android:scaleX="0.8"
             android:scaleY="0.8">
 
-            <!-- Botón Ingresar  -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
 
-                <!-- Sombra del botón -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -177,7 +164,6 @@
                     android:background="@drawable/button_shadow"
                     android:alpha="0.3" />
 
-                <!-- Botón principal -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
@@ -202,7 +188,6 @@
                     app:strokeWidth="1dp"
                     style="@style/Widget.Material3.Button" />
 
-                <!-- Efecto -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -212,12 +197,10 @@
 
             </FrameLayout>
 
-            <!-- Botón Registrarse -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!-- Botón de registro -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_register"
                     android:layout_width="match_parent"
@@ -242,7 +225,6 @@
                     app:rippleColor="#1976D2"
                     style="@style/Widget.Material3.Button.OutlinedButton" />
 
-                <!-- Efecto -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="56dp"

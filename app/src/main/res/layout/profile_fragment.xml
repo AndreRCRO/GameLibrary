@@ -9,8 +9,6 @@
     android:padding="24dp"
     tools:context=".ui.fragments.profileFragment">
 
-    <!-- Texto de encabezado mejorado -->
-
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
@@ -93,6 +91,26 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/btn_hacer_backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hacer Backup"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_rounded_gray"
+        android:drawableLeft="@drawable/ic_backup"
+        android:drawablePadding="12dp"
+        android:paddingVertical="18dp"
+        app:backgroundTint="@null"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_desconectar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
         android:id="@+id/btn_desconectar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,7 +120,7 @@
         android:fontFamily="sans-serif-medium"
         android:textAllCaps="false"
         android:background="@drawable/btn_rounded_red"
-        android:drawableStart="@drawable/ic_logout"
+        android:drawableLeft="@drawable/ic_logout"
         android:drawablePadding="12dp"
         android:paddingVertical="18dp"
         app:backgroundTint="@null"

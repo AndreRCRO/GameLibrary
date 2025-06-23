@@ -17,6 +17,9 @@ public interface BibliotecaDao {
     @Query("SELECT * FROM biblioteca ORDER BY id DESC")
     List<Biblioteca> getAllBibliotecas();
 
+    @Query("SELECT COUNT(*) FROM `juego-biblioteca` WHERE FK_id_Biblioteca = :bibliotecaId")
+    int contarJuegosEnBiblioteca(int bibliotecaId);
+
     @Update
     void updateBiblioteca(Biblioteca biblioteca);
 

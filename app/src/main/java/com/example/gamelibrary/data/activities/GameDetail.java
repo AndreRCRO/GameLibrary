@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.gamelibrary.R;
+import com.example.gamelibrary.data.Repository.BibliotecaRepository;
+import com.example.gamelibrary.data.Repository.JuegoRepository;
 import com.example.gamelibrary.data.modelos.Juego;
 import com.google.android.flexbox.FlexboxLayout;
 
@@ -27,7 +30,9 @@ public class GameDetail extends AppCompatActivity {
     private TextView tv_game_year, tv_game_platforms, tv_metacritic_score, tv_game_description;
     private ImageButton btn_back, btn_favorite;
     private FlexboxLayout flexbox_genres;
+    private JuegoRepository juegoRepository;
     private boolean isFavorite = false;
+    private Juego juego;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,9 @@ public class GameDetail extends AppCompatActivity {
         btn_favorite = findViewById(R.id.btn_favorite);
         flexbox_genres = findViewById(R.id.flexbox_genres);
 
-        Juego juego = (Juego) getIntent().getSerializableExtra("juego");
+        juegoRepository = new JuegoRepository(this);
+
+        juego = (Juego) getIntent().getSerializableExtra("juego");
         Log.d("DEBUG", "Géneros del juego: " + juego.getGeneros());
         Glide.with(this)
                 .load(juego.getImagenUrl())
@@ -75,12 +82,32 @@ public class GameDetail extends AppCompatActivity {
 
         btn_back.setOnClickListener(view -> finish());
 
+
         btn_favorite.setOnClickListener(v -> toggleFavorite());
     }
 
     //Metodo para poeder cambiar el estado del favorito (corazon)
     private void toggleFavorite() {
-        isFavorite = !isFavorite;
+        juegoRepository.insertarJuego(juego, new JuegoRepository.DataCallback<Long>() {
+            @Override
+            public void onDataLoaded(Long id) {
+                runOnUiThread(() -> {
+                    Toast.makeText(GameDetail.this, "Juego agregado a favoritos con ID: " + id, Toast.LENGTH_SHORT).show();
+                    isFavorite = true;
+                });
+            }
+
+            @Override
+            public void onError(Exception e) {
+                runOnUiThread(() -> {
+                    Toast.makeText(GameDetail.this, "Error al agregar favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
+
+
+        /*isFavorite = !isFavorite;
         if (isFavorite) {
             // Corazon relleno
             btn_favorite.setImageResource(R.drawable.ic_favorite);
@@ -101,6 +128,6 @@ public class GameDetail extends AppCompatActivity {
                         .scaleY(1.0f)
                         .setDuration(100)
                         .start())
-                .start();
+                .start();*/
     }
 }

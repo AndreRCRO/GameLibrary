@@ -18,7 +18,6 @@ public class Juego implements Serializable {
     private int metacritic;
     private List<String> generos;
     private List<String> plataformas;
-    private boolean favorito = false;
 
     // Getters y Setters
     public int getId() { return id; }
@@ -30,6 +29,8 @@ public class Juego implements Serializable {
     public int getMetacritic() { return metacritic; }
     public List<String> getGeneros() { return generos; }
     public List<String> getPlataformas() { return plataformas; }
+    public String getImagen_url() {return imagen_url;}
+
 
     // Puedes añadir más según necesites
 
@@ -42,5 +43,4 @@ public class Juego implements Serializable {
     public void setMetacritic(int metacritic) { this.metacritic = metacritic; }
     public void setGeneros(List<String> generos) { this.generos = generos; }
     public void setPlataformas(List<String> plataformas) { this.plataformas = plataformas; }
-
 }

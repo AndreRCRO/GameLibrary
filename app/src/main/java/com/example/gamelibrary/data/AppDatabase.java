@@ -5,11 +5,13 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.example.gamelibrary.data.Dao.BibliotecaDao;
 import com.example.gamelibrary.data.Dao.JuegoBibliotecaDao;
 import com.example.gamelibrary.data.Dao.JuegoDao;
 import com.example.gamelibrary.data.modelos.Biblioteca;
+import com.example.gamelibrary.data.modelos.Converters;
 import com.example.gamelibrary.data.modelos.Juego;
 import com.example.gamelibrary.data.modelos.JuegoBiblioteca;
 
@@ -18,6 +20,7 @@ import com.example.gamelibrary.data.modelos.JuegoBiblioteca;
         version = 1,
         exportSchema = false
 )
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "juegos_db";

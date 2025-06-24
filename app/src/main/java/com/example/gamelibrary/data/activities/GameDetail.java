@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -28,7 +29,7 @@ import com.google.android.flexbox.FlexboxLayout;
 public class GameDetail extends AppCompatActivity {
     private ImageView iv_game_image;
     private TextView tv_game_year, tv_game_platforms, tv_metacritic_score, tv_game_description;
-    private ImageButton btn_back, btn_favorite;
+    private ImageButton btn_back, btn_favorite, btn_add;
     private FlexboxLayout flexbox_genres;
     private JuegoRepository juegoRepository;
     private boolean isFavorite = false;
@@ -46,6 +47,7 @@ public class GameDetail extends AppCompatActivity {
         tv_game_description = findViewById(R.id.tv_game_description);
         btn_back = findViewById(R.id.btn_back);
         btn_favorite = findViewById(R.id.btn_favorite);
+        btn_add = findViewById(R.id.btn_add);
         flexbox_genres = findViewById(R.id.flexbox_genres);
 
         juegoRepository = new JuegoRepository(this);
@@ -66,7 +68,6 @@ public class GameDetail extends AppCompatActivity {
             textView.setBackgroundResource(R.drawable.genre_chip_background);
             textView.setPadding(20, 10, 20, 10);
 
-            // Márgenes entre chips
             FlexboxLayout.LayoutParams params = new FlexboxLayout.LayoutParams(
                     FlexboxLayout.LayoutParams.WRAP_CONTENT,
                     FlexboxLayout.LayoutParams.WRAP_CONTENT
@@ -82,11 +83,11 @@ public class GameDetail extends AppCompatActivity {
 
         btn_back.setOnClickListener(view -> finish());
 
-
         btn_favorite.setOnClickListener(v -> toggleFavorite());
+
+        btn_add.setOnClickListener(v -> showCollectionsDialog());
     }
 
-    //Metodo para poeder cambiar el estado del favorito (corazon)
     private void toggleFavorite() {
         juegoRepository.insertarJuego(juego, new JuegoRepository.DataCallback<Long>() {
             @Override
@@ -104,10 +105,25 @@ public class GameDetail extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void showCollectionsDialog() {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_collections, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+
+        //Para cerrar el dialogo usando ese bton
+        ImageView ivCloseModal = dialogView.findViewById(R.id.iv_close_modal);
+        ivCloseModal.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
+    }
 
 
-
-        /*isFavorite = !isFavorite;
+            /*isFavorite = !isFavorite;
         if (isFavorite) {
             // Corazon relleno
             btn_favorite.setImageResource(R.drawable.ic_favorite);
@@ -129,5 +145,5 @@ public class GameDetail extends AppCompatActivity {
                         .setDuration(100)
                         .start())
                 .start();*/
-    }
+
 }

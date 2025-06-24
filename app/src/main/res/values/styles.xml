@@ -10,6 +10,11 @@
         <item name="android:shadowRadius">2</item>
     </style>
 
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">true</item> <!-- Enables dimming the background -->
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- Makes the dialog background transparent -->
+    </style>
+
     <style name="BottomNavTextInactive">
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">normal</item>

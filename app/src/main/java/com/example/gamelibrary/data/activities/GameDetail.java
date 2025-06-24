@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -115,12 +116,17 @@ public class GameDetail extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
 
-        //Para cerrar el dialogo usando ese bton
         ImageView ivCloseModal = dialogView.findViewById(R.id.iv_close_modal);
         ivCloseModal.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
+
+        dialog.getWindow().setLayout(
+                (int)(getResources().getDisplayMetrics().widthPixels * 0.90),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
     }
+
 
 
             /*isFavorite = !isFavorite;

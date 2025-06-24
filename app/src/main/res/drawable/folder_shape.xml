@@ -4,13 +4,12 @@
     <!-- Sombra para profundidad -->
     <item android:left="4dp" android:top="0dp" android:right="0dp" android:bottom="4dp">
         <shape android:shape="rectangle">
-            <solid android:color="#FDFCFC" />
+            <solid android:color="#3a3a3a" />
             <corners android:radius="2dp" />
         </shape>
     </item>
 
-    <!-- Contorno negro tipo pixel-art -->
-    <!-- (Puedes agregar aquí si quieres) -->
+
 
     <!-- Cuerpo principal de la carpeta con degradado -->
     <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">

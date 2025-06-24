@@ -88,14 +88,15 @@ public class LoginForm extends AppCompatActivity {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
-                            JSONObject data = response.getJSONObject("data");
+                            JSONObject outerData = response.getJSONObject("data");
+                            JSONObject backupData = outerData.getJSONObject("data");
 
                             // Obtener instancia Singleton
                             usuario user = usuario.getInstance();
 
                             // Setear datos del usuario
-                            user.setUsername(data.getString("username"));
-                            user.setId(data.optInt("id", 0));
+                            user.setUsername(outerData.getString("username"));
+                            user.setId(outerData.optInt("id", 0));
 
                             if(cb_remember.isChecked()) {
                                 SharedPreferences prefs = getSharedPreferences("mi_app_prefs", MODE_PRIVATE);
@@ -103,8 +104,8 @@ public class LoginForm extends AppCompatActivity {
 
                                 try {
                                     editor.putBoolean("is_logged_in", true);
-                                    editor.putString("user_username", data.getString("username"));
-                                    editor.putInt("user_id", data.getInt("id"));
+                                    editor.putString("user_username", outerData.getString("username"));
+                                    editor.putInt("user_id", outerData.getInt("id"));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -112,13 +113,12 @@ public class LoginForm extends AppCompatActivity {
                                 editor.apply();
                             }
 
-                            // Convertir JSONObject a JsonObject de Gson
                             com.google.gson.JsonParser parser = new com.google.gson.JsonParser();
-                            com.google.gson.JsonObject gsonData = parser.parse(data.toString()).getAsJsonObject();
+                            com.google.gson.JsonObject gsonData = parser.parse(backupData.toString()).getAsJsonObject();
                             user.setData(gsonData);
 
                             Toast.makeText(this, "Bienvenido, " + user.getUsername(), Toast.LENGTH_LONG).show();
-
+                            user.restaurarBackupDesdeData(this);
                             Intent intent = new Intent(LoginForm.this, MainActivity.class);
                             startActivity(intent);
                             finish();

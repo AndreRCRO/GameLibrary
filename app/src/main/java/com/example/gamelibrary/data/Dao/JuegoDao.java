@@ -28,4 +28,7 @@ public interface JuegoDao {
     @Transaction
     @Query("SELECT * FROM juego WHERE id = :juegoId")
     JuegoConBibliotecas getBibliotecasConJuego(int juegoId);
+
+    @Query("DELETE FROM juego")
+    void deleteAll();
 }

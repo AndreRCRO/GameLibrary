@@ -33,4 +33,6 @@ public interface BibliotecaDao {
     @Query("SELECT * FROM biblioteca WHERE id = :bibliotecaId")
     BibliotecaConJuegos getJuegosPorBiblioteca(int bibliotecaId);
 
+    @Query("DELETE FROM biblioteca")
+    void deleteAll();
 }

@@ -44,4 +44,10 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+    public void clearAllData() {
+        juegoDao().deleteAll();
+        bibliotecaDao().deleteAll();
+        juegobibliotecaDao().deleteAll();
+    }
 }

@@ -43,21 +43,23 @@
 
             </LinearLayout>
 
-            <ImageView
+            <Button
                 android:id="@+id/iv_add_collection"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_add"
-                android:background="@drawable/bg_circle_button"
-                android:padding="8dp"
-                android:tint="#FFFFFF"
-                android:contentDescription="Agregar colección"
-                android:layout_marginBottom="16dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar nueva colección"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/ic_add"
+                android:drawablePadding="8dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#33FFFFFF"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView

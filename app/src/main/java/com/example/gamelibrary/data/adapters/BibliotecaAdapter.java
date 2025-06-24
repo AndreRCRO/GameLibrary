@@ -23,14 +23,14 @@ public class BibliotecaAdapter extends RecyclerView.Adapter<BibliotecaAdapter.Bi
 
     private final List<Biblioteca> listaBibliotecas;
     private final Context context;
-    private BibliotecaAdapter.OnItemActionListener listener;
+    private OnItemActionListener listener;
     private BibliotecaDao bibliotecaDao;
 
     public interface OnItemActionListener {
         void onItemClick(Biblioteca item, int position);
     }
 
-    public void setOnItemActionListener(BibliotecaAdapter.OnItemActionListener listener) {
+    public void setOnItemActionListener(OnItemActionListener listener) {
         this.listener = listener;
     }
 
@@ -74,10 +74,5 @@ public class BibliotecaAdapter extends RecyclerView.Adapter<BibliotecaAdapter.Bi
             titulo = itemView.findViewById(R.id.tv_biblioteca_nombre);
             elementos = itemView.findViewById(R.id.tv_biblioteca_contador);
         }
-    }
-    public void actualizarLista(List<Biblioteca> nuevaLista) {
-        listaBibliotecas.clear();
-        listaBibliotecas.addAll(nuevaLista);
-        notifyDataSetChanged();
     }
 }

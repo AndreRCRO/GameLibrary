@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.gamelibrary.data.AppDatabase;
 import com.example.gamelibrary.data.Dao.BibliotecaDao;
 import com.example.gamelibrary.data.modelos.Biblioteca;
+import com.example.gamelibrary.data.modelos.BibliotecaConJuegos;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -63,6 +64,16 @@ public class BibliotecaRepository {
         });
     }
 
+    public void getBibliotecaConJuegos(int bibliotecaId, DataCallback<BibliotecaConJuegos> callback) {
+        executorService.execute(() -> {
+            try {
+                BibliotecaConJuegos result = bibliotecaDao.getJuegosPorBiblioteca(bibliotecaId);
+                callback.onDataLoaded(result);
+            } catch (Exception e) {
+                callback.onError(e);
+            }
+        });
+    }
     public void updateBiblioteca(Biblioteca biblioteca, DataCallback<Void> callback) {
         executorService.execute(() -> {
             try {

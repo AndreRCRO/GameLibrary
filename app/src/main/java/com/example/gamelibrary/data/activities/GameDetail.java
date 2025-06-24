@@ -18,13 +18,21 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gamelibrary.R;
 import com.example.gamelibrary.data.Repository.BibliotecaRepository;
 import com.example.gamelibrary.data.Repository.JuegoRepository;
+import com.example.gamelibrary.data.adapters.MisBibliotecasAdapter;
+import com.example.gamelibrary.data.modelos.Biblioteca;
 import com.example.gamelibrary.data.modelos.Juego;
+import com.example.gamelibrary.data.modelos.JuegoConBibliotecas;
 import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameDetail extends AppCompatActivity {
@@ -33,7 +41,7 @@ public class GameDetail extends AppCompatActivity {
     private ImageButton btn_back, btn_favorite, btn_add;
     private FlexboxLayout flexbox_genres;
     private JuegoRepository juegoRepository;
-    private boolean isFavorite = false;
+    private boolean agregado = false;
     private Juego juego;
 
     @Override
@@ -54,7 +62,7 @@ public class GameDetail extends AppCompatActivity {
         juegoRepository = new JuegoRepository(this);
 
         juego = (Juego) getIntent().getSerializableExtra("juego");
-        Log.d("DEBUG", "Géneros del juego: " + juego.getGeneros());
+        verificarJuego();
         Glide.with(this)
                 .load(juego.getImagenUrl())
                 .into(iv_game_image);
@@ -86,61 +94,48 @@ public class GameDetail extends AppCompatActivity {
 
         btn_favorite.setOnClickListener(v -> toggleFavorite());
 
-        btn_add.setOnClickListener(v -> showCollectionsDialog());
+        btn_add.setOnClickListener(v -> showCollectionsDialog(juego));
     }
 
     private void toggleFavorite() {
-        juegoRepository.insertarJuego(juego, new JuegoRepository.DataCallback<Long>() {
-            @Override
-            public void onDataLoaded(Long id) {
-                runOnUiThread(() -> {
-                    Toast.makeText(GameDetail.this, "Juego agregado a favoritos con ID: " + id, Toast.LENGTH_SHORT).show();
-                    isFavorite = true;
-                });
-            }
+        if (agregado)
+        {
+            juegoRepository.deleteJuego(juego, new JuegoRepository.DataCallback<Void>() {
+                @Override
+                public void onDataLoaded(Void data) {
+                    runOnUiThread(() -> {
+                        agregado = false;
+                        Toast.makeText(GameDetail.this, "Juego eliminado de favoritos" , Toast.LENGTH_SHORT).show();
+                        btn_favorite.setImageResource(R.drawable.ic_favorite_border);
+                        btn_favorite.setColorFilter(ContextCompat.getColor(GameDetail.this, android.R.color.white));
+                    });
+                }
+                @Override
+                public void onError(Exception e) {
 
-            @Override
-            public void onError(Exception e) {
-                runOnUiThread(() -> {
-                    Toast.makeText(GameDetail.this, "Error al agregar favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-            }
-        });
-    }
-
-    private void showCollectionsDialog() {
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_collections, null);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
-        builder.setView(dialogView);
-
-        AlertDialog dialog = builder.create();
-
-        ImageView ivCloseModal = dialogView.findViewById(R.id.iv_close_modal);
-        ivCloseModal.setOnClickListener(v -> dialog.dismiss());
-
-        dialog.show();
-
-        dialog.getWindow().setLayout(
-                (int)(getResources().getDisplayMetrics().widthPixels * 0.90),
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-    }
-
-
-
-            /*isFavorite = !isFavorite;
-        if (isFavorite) {
-            // Corazon relleno
-            btn_favorite.setImageResource(R.drawable.ic_favorite);
-            btn_favorite.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_red_light));
-        } else {
-            // marco vacio del cora
-            btn_favorite.setImageResource(R.drawable.ic_favorite_border);
-            btn_favorite.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
+                }
+            });
         }
-
-        //Animacion que podria dar problemas pero se peude cambiar
+        else
+        {
+            juegoRepository.insertarJuego(juego, new JuegoRepository.DataCallback<Long>() {
+                @Override
+                public void onDataLoaded(Long id) {
+                    runOnUiThread(() -> {
+                        agregado = true;
+                        Toast.makeText(GameDetail.this, "Juego agregado a favoritos con ID: " + id, Toast.LENGTH_SHORT).show();
+                        btn_favorite.setImageResource(R.drawable.ic_favorite);
+                        btn_favorite.setColorFilter(ContextCompat.getColor(GameDetail.this, android.R.color.holo_red_light));
+                    });
+                }
+                @Override
+                public void onError(Exception e) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(GameDetail.this, "Error al agregar favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+        }
         btn_favorite.animate()
                 .scaleX(1.2f)
                 .scaleY(1.2f)
@@ -150,6 +145,148 @@ public class GameDetail extends AppCompatActivity {
                         .scaleY(1.0f)
                         .setDuration(100)
                         .start())
-                .start();*/
+                .start();
+    }
 
+    private void showCollectionsDialog(Juego juego) {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_collections, null);
+        dialogView.setTag(juego);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+
+
+        ImageView iv_close_modal = dialogView.findViewById(R.id.iv_close_modal);
+        RecyclerView recyclerView = dialogView.findViewById(R.id.rv_colecciones);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        JuegoRepository juegoRepo = new JuegoRepository(this);
+        BibliotecaRepository bibliotecaRepo = new BibliotecaRepository(this);
+
+        List<Biblioteca> bibliotecas = new ArrayList<>();
+        List<Integer> idsAsociados = new ArrayList<>();
+        MisBibliotecasAdapter adapter = new MisBibliotecasAdapter(this, bibliotecas, idsAsociados);
+        recyclerView.setAdapter(adapter);
+        iv_close_modal.setOnClickListener(v -> dialog.dismiss());
+        adapter.setOnBibliotecaCheckedChangeListener((biblioteca, isChecked) -> {
+            if (isChecked) {
+                juegoRepository.insertarRelacionJuegoBiblioteca(biblioteca.getId(), juego.getId(), new JuegoRepository.DataCallback<Void>() {
+                    @Override
+                    public void onDataLoaded(Void data) {
+                        runOnUiThread(() -> {
+                            Toast.makeText(GameDetail.this, "Se ha agregado el juego a la biblioteca", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        juegoRepo.insertarJuego(juego, new JuegoRepository.DataCallback<Long>() {
+                            @Override
+                            public void onDataLoaded(Long id) {
+                                juegoRepository.insertarRelacionJuegoBiblioteca(biblioteca.getId(), juego.getId(), new JuegoRepository.DataCallback<Void>() {
+                                    @Override
+                                    public void onDataLoaded(Void data) {
+                                        runOnUiThread(() -> {
+                                            agregado = true;
+                                            Toast.makeText(GameDetail.this, "Juego insertado y agregado a la biblioteca", Toast.LENGTH_SHORT).show();
+                                            btn_favorite.setImageResource(R.drawable.ic_favorite);
+                                            btn_favorite.setColorFilter(ContextCompat.getColor(GameDetail.this, android.R.color.holo_red_light));
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e2) {
+                                        runOnUiThread(() -> {
+                                            Toast.makeText(GameDetail.this, "Error al agregar juego a biblioteca incluso después de insertar el juego", Toast.LENGTH_SHORT).show();
+                                        });
+                                    }
+                                });
+                            }
+                            @Override
+                            public void onError(Exception e) {
+                                runOnUiThread(() -> {
+                                    Toast.makeText(GameDetail.this, "Error al agregar favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        });
+                    }
+                });
+            } else {
+                juegoRepository.eliminarRelacionJuegoBiblioteca(biblioteca.getId(), juego.getId() , new JuegoRepository.DataCallback<Void>() {
+                    @Override
+                    public void onDataLoaded(Void data) {
+                        runOnUiThread(() -> {
+                            Toast.makeText(GameDetail.this, "Se ha eliminado el juego a la biblioteca", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        runOnUiThread(() -> {
+                            Toast.makeText(GameDetail.this, "Error al eliminar juego de biblioteca", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
+            }
+        });
+
+        bibliotecaRepo.getAllBibliotecasConConteo(new BibliotecaRepository.DataCallback<List<Biblioteca>>() {
+            @Override
+            public void onDataLoaded(List<Biblioteca> data) {
+                runOnUiThread(() -> {
+                    bibliotecas.clear();
+                    bibliotecas.addAll(data);
+                    adapter.notifyDataSetChanged();
+                });
+            }
+            @Override
+            public void onError(Exception e) { }
+        });
+
+        juegoRepo.getJuegosConBiblioteca(juego.getId(), new JuegoRepository.DataCallback<JuegoConBibliotecas>() {
+            @Override
+            public void onDataLoaded(JuegoConBibliotecas data) {
+                for (Biblioteca b : data.bibliotecas) {
+                    idsAsociados.add(b.getId());
+                }
+                runOnUiThread(adapter::notifyDataSetChanged);
+            }
+
+            @Override
+            public void onError(Exception e) { }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(
+                (int)(getResources().getDisplayMetrics().widthPixels * 0.90),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+    }
+
+
+    private void verificarJuego() {
+        juegoRepository.getJuegoById(juego.getId(), new JuegoRepository.DataCallback<Juego>() {
+            @Override
+            public void onDataLoaded(Juego data) {
+                runOnUiThread(() -> {
+                    if (data != null) {
+                        agregado = true;
+                        btn_favorite.setImageResource(R.drawable.ic_favorite);
+                        btn_favorite.setColorFilter(ContextCompat.getColor(GameDetail.this, android.R.color.holo_red_light));
+                    } else {
+                        agregado = false;
+                        btn_favorite.setImageResource(R.drawable.ic_favorite_border);
+                        btn_favorite.setColorFilter(ContextCompat.getColor(GameDetail.this, android.R.color.white));
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Exception e) {
+                runOnUiThread(() ->
+                        Toast.makeText(GameDetail.this, "Error al verificar favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
+            }
+        });
+    }
 }

@@ -5,8 +5,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.example.gamelibrary.data.modelos.Juego;
+import com.example.gamelibrary.data.modelos.JuegoConBibliotecas;
 
 import java.util.List;
 @Dao
@@ -22,4 +24,8 @@ public interface JuegoDao {
 
     @Delete
     void deleteJuego(Juego juego);
+
+    @Transaction
+    @Query("SELECT * FROM juego WHERE id = :juegoId")
+    JuegoConBibliotecas getBibliotecasConJuego(int juegoId);
 }

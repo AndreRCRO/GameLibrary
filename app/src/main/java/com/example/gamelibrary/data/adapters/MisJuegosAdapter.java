@@ -19,13 +19,14 @@ import java.util.List;
 public class MisJuegosAdapter extends RecyclerView.Adapter<MisJuegosAdapter.MisJuegosViewHolder> {
     private final List<Juego> listaJuegos;
     private final Context context;
-    private JuegoAdapter.OnItemActionListener listener;
+    private OnItemActionListener listener;
 
     public interface OnItemActionListener {
-        void onItemClick(Juego item, int position);
+        void onItemClick(Juego juego, int position);
+        void onDeleteClick(Juego juego, int position);
     }
 
-    public void setOnItemActionListener(JuegoAdapter.OnItemActionListener listener) {
+    public void setOnItemActionListener(OnItemActionListener listener) {
         this.listener = listener;
     }
 
@@ -55,6 +56,11 @@ public class MisJuegosAdapter extends RecyclerView.Adapter<MisJuegosAdapter.MisJ
                 listener.onItemClick(juego, position);
             }
         });
+        holder.deleteButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onDeleteClick(juego, position);
+            }
+        });
     }
 
     @Override
@@ -63,13 +69,14 @@ public class MisJuegosAdapter extends RecyclerView.Adapter<MisJuegosAdapter.MisJ
     }
 
     public static class MisJuegosViewHolder extends RecyclerView.ViewHolder {
-        ImageView imagen;
+        ImageView imagen, deleteButton;
         TextView titulo;
 
         public MisJuegosViewHolder(@NonNull View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.iv_juego_imagen);
             titulo = itemView.findViewById(R.id.tv_juego_titulo);
+            deleteButton = itemView.findViewById(R.id.iv_delete_button);
         }
     }
 }

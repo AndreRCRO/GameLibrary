@@ -1,9 +1,11 @@
 package com.example.gamelibrary.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamelibrary.R;
 import com.example.gamelibrary.data.AppDatabase;
 import com.example.gamelibrary.data.Repository.BibliotecaRepository;
+import com.example.gamelibrary.data.activities.GameDetail;
+import com.example.gamelibrary.data.activities.library;
 import com.example.gamelibrary.data.adapters.BibliotecaAdapter;
 import com.example.gamelibrary.data.modelos.Biblioteca;
 
@@ -26,7 +30,7 @@ public class CollectionsFragment extends Fragment {
     private BibliotecaRepository bibliotecaRepository;
     private RecyclerView recyclerView;
     private List<Biblioteca> listaBibliotecas = new ArrayList<>();
-    private ImageView iv_add_collection;
+    private Button iv_add_collection;
     private BibliotecaAdapter adapter;
 
     @Override
@@ -43,6 +47,12 @@ public class CollectionsFragment extends Fragment {
         bibliotecaRepository = new BibliotecaRepository(requireContext());
 
         iv_add_collection.setOnClickListener(v -> mostrarDialogoAgregarBiblioteca());
+
+        adapter.setOnItemActionListener((biblioteca, position) -> {
+            Intent intent = new Intent(getContext(), library.class);
+            intent.putExtra("biblioteca", biblioteca);
+            startActivity(intent);
+        });
         cargarBibliotecas();
 
         return view;

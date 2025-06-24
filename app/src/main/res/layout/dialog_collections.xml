@@ -52,20 +52,13 @@
         android:background="#FFFFFF"
         android:layout_marginBottom="16dp" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_colecciones"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-
-        <LinearLayout
-            android:id="@+id/layout_colecciones_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Las colecciones se agregarán aqui -->
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_height="300dp"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>
